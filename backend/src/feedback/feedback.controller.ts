@@ -7,7 +7,8 @@ import {
   Delete, 
   HttpCode, 
   Param,
-  Header, 
+  Header,
+  Logger, 
 } from '@nestjs/common';
 import { 
   ApiTags,
@@ -23,6 +24,8 @@ import { FeedbackService } from './feedback.service';
 @ApiTags('feedback') // Группировка в Swagger UI
 @Controller('feedback') // Базовый маршрут: /feedback
 export class FeedbackController {
+  private readonly logger = new Logger(FeedbackController.name);
+  
   // Инжектируем сервис для бизнес-логики
   constructor(private readonly service: FeedbackService) {}
   /*
@@ -42,6 +45,7 @@ export class FeedbackController {
     type: Feedback,
   })
   create(@Body() dto: CreateFeedbackDto) {
+    this.logger.log('POST /feedback', dto);
     return this.service.create(dto);
   }
 
@@ -55,6 +59,7 @@ export class FeedbackController {
   })
   @Header('Cache-Control', 'max-age=60')
   findAll() {
+    this.logger.log('GET /feedback');
     return this.service.findAll();
   }
 
@@ -82,6 +87,7 @@ export class FeedbackController {
     description: 'Feedback не найден',
   })
   findOne(@Param('id') id: string) {
+    this.logger.log(`GET /feedback/${id}`);
     return this.service.findOne(id);
   }
 
@@ -112,6 +118,7 @@ export class FeedbackController {
     @Param('id') id: string, 
     @Body() dto: UpdateFeedbackDto,
   ) {
+    this.logger.log(`PUT /feedback/${id}`, dto);
     return this.service.update(id, dto);
   }
 
@@ -139,6 +146,7 @@ export class FeedbackController {
   })
   @HttpCode(204) 
   remove(@Param('id') id: string) {
+    this.logger.log(`DELETE /feedback/${id}`);
     return this.service.remove(id);
   }
 }
