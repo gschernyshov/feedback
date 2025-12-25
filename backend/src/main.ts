@@ -25,7 +25,7 @@ async function bootstrap() {
         // Логи в файл
         new winston.transports.File({
           filename: 'logs/error.log',
-          level: 'error', // только ошибки
+          level: 'error', // error и выше
           format: winston.format.json(),
         }),
         new winston.transports.File({

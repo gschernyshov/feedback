@@ -41,9 +41,8 @@ export class FeedbackService {
 
   async findOne(id: string) {
     if (!isUUID(id)) {
-      const message = 'Некорректный формат ID';
       this.logger.warn(`Попытка доступа к feedback с некорректным ID: ${id}`);
-      throw new BadRequestException(message);
+      throw new BadRequestException('Некорректный формат ID');
     }
 
     this.logger.log(`Поиск feedback с ID: ${id}`);
