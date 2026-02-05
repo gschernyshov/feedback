@@ -6,11 +6,13 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx,json}\" \"app/**/*.{ts,tsx,js,jsx,json}\"",
     "lint": "eslint"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.11.2",
     "next": "16.0.10",
+    "prettier": "^3.8.1",
     "react": "19.2.1",
     "react-dom": "19.2.1",
     "react-redux": "^9.2.0"
