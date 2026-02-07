@@ -1,5 +1,5 @@
-import { Length, IsString, IsEmail } from 'class-validator';
-import { ApiProperty } from '@nestjs/swagger';
+import { Length, IsString, IsEmail } from 'class-validator'
+import { ApiProperty } from '@nestjs/swagger'
 
 export class CreateFeedbackDto {
   @ApiProperty({
@@ -10,7 +10,7 @@ export class CreateFeedbackDto {
   })
   @IsString({ message: 'Некорректное имя' })
   @Length(1, 100, { message: 'Имя должно быть от 1 до 100 символов' })
-  name: string;
+  name: string
 
   @ApiProperty({
     description: 'Email для обратной связи',
@@ -22,7 +22,7 @@ export class CreateFeedbackDto {
   @IsString({ message: 'Некорректный email' })
   @IsEmail({}, { message: 'Некорректный формат email' })
   @Length(1, 100, { message: 'Email не должен превышать 100 символов' })
-  email: string;
+  email: string
 
   @ApiProperty({
     description: 'Текст сообщения',
@@ -32,5 +32,5 @@ export class CreateFeedbackDto {
   })
   @IsString({ message: 'Некорректное сообщение' })
   @Length(10, 1000, { message: 'Сообщение должно быть от 10 до 1000 символов' })
-  message: string;
+  message: string
 }

@@ -1,10 +1,10 @@
-import { NestFactory } from '@nestjs/core';
-import { ValidationPipe } from '@nestjs/common';
-import { WinstonModule } from 'nest-winston';
-import * as winston from 'winston';
-import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import { AppModule } from './app.module';
-import { ConfigService } from '@nestjs/config';
+import { NestFactory } from '@nestjs/core'
+import { ValidationPipe } from '@nestjs/common'
+import { ConfigService } from '@nestjs/config'
+import { WinstonModule } from 'nest-winston'
+import * as winston from 'winston'
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
+import { AppModule } from './app.module'
 
 async function bootstrap() {
   // Создаём экземпляр NestJS-приложения на основе корневого модуля
@@ -18,7 +18,7 @@ async function bootstrap() {
             winston.format.timestamp(),
             winston.format.colorize(),
             winston.format.printf(({ timestamp, level, message }) => {
-              return `[${timestamp}] ${level}: ${message}`;
+              return `[${timestamp}] ${level}: ${message}`
             }),
           ),
         }),
@@ -35,9 +35,9 @@ async function bootstrap() {
         }),
       ],
     }),
-  });
-  
-  const config = app.get(ConfigService);
+  })
+
+  const config = app.get(ConfigService)
 
   // Настройка Swagger
   const swaggerConfig = new DocumentBuilder()
@@ -45,10 +45,10 @@ async function bootstrap() {
     .setDescription('API для управления отзывами')
     .setVersion('1.0')
     .addTag('feedback')
-    .build();
+    .build()
 
-  const document = SwaggerModule.createDocument(app, swaggerConfig);
-  SwaggerModule.setup('api', app, document); // Доступно по /api
+  const document = SwaggerModule.createDocument(app, swaggerConfig)
+  SwaggerModule.setup('api', app, document) // Доступно по /api
 
   // Глобальная валидация
   app.useGlobalPipes(
@@ -57,15 +57,15 @@ async function bootstrap() {
       forbidNonWhitelisted: true, // Возвращаем 400, если есть лишние поля (вместо удаления)
       transform: true, // Автоматически приводим типы (например, строки в числа)
     }),
-  );
+  )
 
-  // Разрешаем CORS-запросы только с фронтенда на http://localhost:3000
+  // Разрешаем CORS-запросы только с фронтенда
   app.enableCors({
-    origin: 'http://localhost:3000',
-  });
+    origin: config.get('CORS_ORIGINS', 'http://localhost:3000'),
+  })
 
   // Запускаем сервер на порту
-  const port = config.get('PORT', 3005);
-  await app.listen(port);
+  const port = config.get('PORT', 3001)
+  await app.listen(port)
 }
-bootstrap();
+bootstrap()

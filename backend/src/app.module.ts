@@ -1,12 +1,12 @@
-import { Module } from '@nestjs/common';
-import { ConfigModule, ConfigService } from '@nestjs/config';
-import { join } from 'path';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { FeedbackModule } from './feedback/feedback.module';
+import { Module } from '@nestjs/common'
+import { ConfigModule, ConfigService } from '@nestjs/config'
+import { join } from 'path'
+import { TypeOrmModule } from '@nestjs/typeorm'
+import { FeedbackModule } from './feedback/feedback.module'
 
 @Module({
   imports: [
-    ConfigModule.forRoot({ 
+    ConfigModule.forRoot({
       envFilePath: join(process.cwd(), '.env'),
       isGlobal: true,
     }),
@@ -16,7 +16,7 @@ import { FeedbackModule } from './feedback/feedback.module';
       useFactory: (config: ConfigService) => ({
         type: 'postgres',
         host: config.get('DB_HOST'),
-        port: config.get('DB_PORT', 5433), 
+        port: config.get('DB_PORT', 5432),
         username: config.get('DB_USERNAME'),
         password: config.get('DB_PASSWORD'),
         database: config.get('DB_NAME'),
@@ -30,4 +30,3 @@ import { FeedbackModule } from './feedback/feedback.module';
   ],
 })
 export class AppModule {}
-

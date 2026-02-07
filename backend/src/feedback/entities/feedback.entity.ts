@@ -1,10 +1,10 @@
-import { 
-  Entity, 
-  PrimaryGeneratedColumn, 
-  Column, 
-  CreateDateColumn 
-} from 'typeorm';
-import { ApiProperty } from '@nestjs/swagger';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  CreateDateColumn,
+} from 'typeorm'
+import { ApiProperty } from '@nestjs/swagger'
 
 @Entity('feedbacks')
 export class Feedback {
@@ -14,7 +14,7 @@ export class Feedback {
     readOnly: true,
   })
   @PrimaryGeneratedColumn('uuid')
-  id: string;
+  id: string
 
   @ApiProperty({
     description: 'Имя автора',
@@ -23,7 +23,7 @@ export class Feedback {
     maxLength: 100,
   })
   @Column()
-  name: string;
+  name: string
 
   @ApiProperty({
     description: 'Email для обратной связи',
@@ -33,7 +33,7 @@ export class Feedback {
     maxLength: 100,
   })
   @Column()
-  email: string;
+  email: string
 
   @ApiProperty({
     description: 'Текст сообщения',
@@ -42,7 +42,7 @@ export class Feedback {
     maxLength: 1000,
   })
   @Column()
-  message: string;
+  message: string
 
   @ApiProperty({
     description: 'Дата и время создания (UTC)',
@@ -51,5 +51,5 @@ export class Feedback {
     readOnly: true,
   })
   @CreateDateColumn()
-  createdAt: Date;
+  createdAt: Date
 }
