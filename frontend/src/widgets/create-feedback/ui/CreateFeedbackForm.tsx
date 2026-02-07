@@ -13,7 +13,7 @@ import { getErrorMessage } from '@/shared/lib/errors'
 import { Toast } from '@/src/shared/ui/Toast'
 
 export const CreateFeedbackForm = () => {
-  const [sendFeedback, { isLoading, isSuccess, data, isError, error }] =
+  const [sendFeedback, { isLoading, isSuccess, isError, error }] =
     useCreateFeedbackMutation()
 
   const [dataForm, setDataForm] = useState(initialFeedbackForm)
