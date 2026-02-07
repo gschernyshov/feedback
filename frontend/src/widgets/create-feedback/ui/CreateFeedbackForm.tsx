@@ -10,6 +10,7 @@ import { EmailFiled } from './EmailFiled'
 import { MessageField } from './MessageField'
 import { SubmitButton } from './SubmitButton'
 import { getErrorMessage } from '@/shared/lib/errors'
+import { Toast } from '@/src/shared/ui/Toast'
 
 export const CreateFeedbackForm = () => {
   const [sendFeedback, { isLoading, isSuccess, data, isError, error }] =
@@ -77,16 +78,16 @@ export const CreateFeedbackForm = () => {
       </form>
 
       {isSuccess && (
-        <p className="text-green-500">
-          Feedback создан: {JSON.stringify(data)}
-        </p>
+        <Toast isSuccess={true} infoText="Feedback успешно создан!" />
       )}
 
-      {isError &&
-        getErrorMessage(
-          error,
-          'При отправки Feedback возникла ошибка!',
-        ).toLocaleLowerCase()}
+      {isError && (
+        <Toast
+          isSuccess={false}
+          infoText="При отправке Feedback возникла ошибка"
+          errorMessage={getErrorMessage(error)}
+        />
+      )}
     </div>
   )
 }

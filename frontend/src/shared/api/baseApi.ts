@@ -10,7 +10,7 @@ const baseQueryWithRetry = retry(baseQuery, { maxRetries: 2 })
 export const baseApi = createApi({
   // Ключ для Redux-стора
   reducerPath: 'api',
-  
+
   baseQuery: baseQueryWithRetry,
   endpoints: () => ({}),
   tagTypes: ['Feedback'],
