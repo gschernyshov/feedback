@@ -6,9 +6,9 @@ import { initialFeedbackForm } from '../model/initData'
 import { validationCreateFeedbackForm } from '../model/validation'
 import { CreateFeedbackErrors } from '../model/types'
 import { NameField } from './NameField'
+import { EmailFiled } from './EmailFiled'
 import { MessageField } from './MessageField'
 import { SubmitButton } from './SubmitButton'
-import { EmailFiled } from './EmailFiled'
 import { getErrorMessage } from '@/shared/lib/errors'
 
 export const CreateFeedbackForm = () => {
