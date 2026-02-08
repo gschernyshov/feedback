@@ -13,7 +13,7 @@ import { getErrorMessage } from '@/shared/lib/errors'
 import { Toast } from '@/src/shared/ui/Toast'
 
 export const CreateFeedbackForm = () => {
-  const [sendFeedback, { isLoading, isSuccess, isError, error }] =
+  const [sendFeedback, { isLoading, isSuccess, data, isError, error }] =
     useCreateFeedbackMutation()
 
   const [dataForm, setDataForm] = useState(initialFeedbackForm)
@@ -48,9 +48,10 @@ export const CreateFeedbackForm = () => {
   }
 
   return (
-    <div className="w-full max-w-xl">
+    <div className="flex flex-col justify-start gap-4 w-full max-w-xl p-3 border">
+      <h2 className="text-xl font-bold">Отправьте Feedback</h2>
       <form
-        className="flex flex-col justify-start gap-4 w-full p-3 border"
+        className="flex flex-col justify-start gap-4 w-full"
         onSubmit={handleSubmit}
       >
         <NameField
@@ -78,7 +79,10 @@ export const CreateFeedbackForm = () => {
       </form>
 
       {isSuccess && (
-        <Toast isSuccess={true} infoText="Feedback успешно создан!" />
+        <Toast
+          isSuccess={true}
+          infoText={`Feedback c id: ${data.id} успешно создан!`}
+        />
       )}
 
       {isError && (

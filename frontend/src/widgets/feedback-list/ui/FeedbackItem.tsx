@@ -14,7 +14,7 @@ export const FeedbackItem = ({ feedback }: FeedbackItemProps) => {
         <li>Email: {feedback.email}</li>
         <li>Сообщение: {feedback.message}</li>
       </ul>
-      <p className="border-t text-sm font-bold text-gray-400">
+      <p className="border-t text-sm text-gray-600">
         От: {formattedDate(feedback.createdAt)}
       </p>
     </div>
