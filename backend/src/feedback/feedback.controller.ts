@@ -3,7 +3,7 @@ import {
   Controller,
   Post,
   Get,
-  Put,
+  Patch,
   Delete,
   HttpCode,
   Param,
@@ -52,7 +52,6 @@ export class FeedbackController {
     description: 'Список feedbacks',
     type: [Feedback],
   })
-  @Header('Cache-Control', 'max-age=60')
   findAll() {
     this.logger.log('GET /feedback')
     return this.service.findAll()
@@ -86,8 +85,8 @@ export class FeedbackController {
     return this.service.findOne(id)
   }
 
-  // PUT /feedback/:id
-  @Put(':id')
+  // PATCH /feedback/:id
+  @Patch(':id')
   @ApiOperation({ summary: 'Обновить feedback по ID' })
   @ApiParam({
     name: 'id',
