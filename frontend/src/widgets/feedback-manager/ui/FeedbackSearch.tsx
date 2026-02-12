@@ -28,7 +28,7 @@ export const FeedbackSearch = ({
           disabled={isLoading}
           placeholder="Id"
           value={value}
-          onChange={e => onChange(e.target.value)}
+          onChange={e => onChange(e.target.value.trim())}
           errorMessage={errorMessage}
         />
         <Button size="sm" type="button" disabled={isLoading} onClick={onSearch}>
