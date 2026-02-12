@@ -14,3 +14,5 @@ export type FindFeedbackError = string
 
 export type UpdateFeedback = Omit<Feedback, 'email' | 'createdAt'>
 export type UpdateFeedbackErrors = Partial<Record<keyof UpdateFeedback, string>>
+
+export type RemoveFeedback = Feedback['id']
