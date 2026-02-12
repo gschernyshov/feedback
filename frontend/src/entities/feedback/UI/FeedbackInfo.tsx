@@ -1,11 +1,11 @@
-import { formattedDate } from '@/entities/feedback/lib/format-date'
-import { Feedback } from '@/entities/feedback/model/types'
+import { Feedback } from '../model/types'
+import { formattedDate } from '../lib/format-date'
 
-interface FeedbackItemProps {
+interface FeedbackInfoProps {
   feedback: Feedback
 }
 
-export const FeedbackItem = ({ feedback }: FeedbackItemProps) => {
+export const FeedbackInfo = ({ feedback }: FeedbackInfoProps) => {
   return (
     <div className="p-3 border">
       <p className="border-b text-md font-bold">Feedback c id: {feedback.id}</p>

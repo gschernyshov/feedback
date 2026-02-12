@@ -1,8 +1,8 @@
 'use client'
 
 import { useFindAllFeedbacksQuery } from '../api/useFindAllFeedbacksQuery'
+import { FeedbackInfo } from '@/entities/feedback/UI/FeedbackInfo'
 import { getErrorMessage } from '@/shared/lib/errors'
-import { FeedbackItem } from './FeedbackItem'
 
 export const FeedbackList = () => {
   const { isLoading, data, isError, error } = useFindAllFeedbacksQuery()
@@ -16,7 +16,7 @@ export const FeedbackList = () => {
         <p>При загрузке Feedbacks возникла ошибка: {getErrorMessage(error)}.</p>
       ) : data && data.length > 0 ? (
         data.map(feedback => (
-          <FeedbackItem key={feedback.id} feedback={feedback} />
+          <FeedbackInfo key={feedback.id} feedback={feedback} />
         ))
       ) : (
         <p>Список Feedbacks пуст...</p>

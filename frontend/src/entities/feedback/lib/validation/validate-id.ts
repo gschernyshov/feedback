@@ -5,8 +5,8 @@ export const validationId = (id: string) => {
     return 'Id обязателен'
   }
 
-  if (lengthId > 100) {
-    return 'Длина Id не должна превышать 100 символов'
+  if (lengthId > 36) {
+    return 'Длина Id не должна превышать 36 символов'
   }
 
   if (

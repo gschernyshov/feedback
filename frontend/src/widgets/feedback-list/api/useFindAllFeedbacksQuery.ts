@@ -1,5 +1,5 @@
-import { baseApi } from '@/shared/api/baseApi'
 import { Feedback } from '@/entities/feedback/model/types'
+import { baseApi } from '@/shared/api/baseApi'
 
 const feedbackApi = baseApi.injectEndpoints({
   endpoints: builder => ({

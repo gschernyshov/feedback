@@ -1,18 +1,18 @@
 'use client'
 
-import { ChangeEvent, FormEvent, useState } from 'react'
+import { useState, ChangeEvent, FormEvent } from 'react'
 import { useCreateFeedbackMutation } from '../api/useCreateFeedbackMutation'
 import { initialFeedbackForm } from '../model/initData'
 import { validationCreateFeedbackForm } from '../model/validation'
-import { CreateFeedbackErrors } from '../model/types'
-import { NameField } from './NameField'
-import { EmailFiled } from './EmailFiled'
-import { MessageField } from './MessageField'
-import { SubmitButton } from './SubmitButton'
+import { NameField } from './Form/NameField'
+import { EmailFiled } from './Form/EmailFiled'
+import { MessageField } from './Form/MessageField'
+import { SubmitButton } from './Form/SubmitButton'
+import { CreateFeedbackErrors } from '@/entities/feedback/model/types'
 import { getErrorMessage } from '@/shared/lib/errors'
-import { Toast } from '@/src/shared/ui/Toast'
+import { Toast } from '@/shared/ui/Toast'
 
-export const CreateFeedbackForm = () => {
+export const FeedbackCreateForm = () => {
   const [sendFeedback, { isLoading, isSuccess, data, isError, error }] =
     useCreateFeedbackMutation()
 
@@ -26,7 +26,7 @@ export const CreateFeedbackForm = () => {
     const { name: fieldName, value } = e.target
     setDataForm({
       ...dataForm,
-      [fieldName]: value,
+      [fieldName]: value.trim(),
     })
   }
 
@@ -48,7 +48,7 @@ export const CreateFeedbackForm = () => {
   }
 
   return (
-    <div className="flex flex-col justify-start gap-4 w-full max-w-xl p-3 border">
+    <div className="flex flex-col justify-start gap-4 w-full p-3 border">
       <h2 className="text-xl font-bold">Отправьте Feedback</h2>
       <form
         className="flex flex-col justify-start gap-4 w-full"
@@ -56,22 +56,22 @@ export const CreateFeedbackForm = () => {
       >
         <NameField
           value={dataForm.name}
-          handleChange={handleChange}
-          isLoading={isLoading}
+          onChange={handleChange}
+          disabled={isLoading}
           errorMessage={errorsValidation.name}
         />
 
         <EmailFiled
           value={dataForm.email}
-          handleChange={handleChange}
-          isLoading={isLoading}
+          onChange={handleChange}
+          disabled={isLoading}
           errorMessage={errorsValidation.email}
         />
 
         <MessageField
           value={dataForm.message}
-          handleChange={handleChange}
-          isLoading={isLoading}
+          onChange={handleChange}
+          disabled={isLoading}
           errorMessage={errorsValidation.message}
         />
 

@@ -1,4 +1,4 @@
-import { isEmail } from '@/src/shared/lib/validation'
+import { isEmail } from '@/shared/lib/validation'
 
 export const validationEmail = (email: string) => {
   const lengthEmail = email.length
