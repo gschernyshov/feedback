@@ -1,10 +1,13 @@
-import { FindFeedbackError } from '@/entities/feedback/model/types'
-import { Button } from '@/shared/ui/Form/Button'
+import {
+  FindFeedback,
+  FindFeedbackError,
+} from '@/entities/feedback/model/types'
 import { Input } from '@/shared/ui/Form/Input'
+import { Button } from '@/shared/ui/Form/Button'
 
 interface FeedbackSearchProps {
-  value: string
-  onChange: (id: string) => void
+  value: FindFeedback
+  onChange: (id: FindFeedback) => void
   onSearch: () => void
   isLoading: boolean
   errorMessage: FindFeedbackError

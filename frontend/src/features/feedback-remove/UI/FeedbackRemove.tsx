@@ -1,8 +1,8 @@
 import { useRemoveFeedbackMutation } from '../api/api'
 import { Feedback } from '@/entities/feedback/model/types'
+import { getErrorMessage } from '@/shared/lib/errors'
 import { Button } from '@/shared/ui/Form/Button'
 import { Toast } from '@/shared/ui/Toast'
-import { getErrorMessage } from '@/shared/lib/errors'
 
 interface FeedbackRemoveProps {
   id: Feedback['id']

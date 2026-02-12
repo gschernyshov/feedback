@@ -4,11 +4,11 @@ import { useState, ChangeEvent, FormEvent } from 'react'
 import { useCreateFeedbackMutation } from '../api/useCreateFeedbackMutation'
 import { initialFeedbackForm } from '../model/initData'
 import { validationCreateFeedbackForm } from '../model/validation'
-import { NameField } from './Form/NameField'
-import { EmailFiled } from './Form/EmailFiled'
-import { MessageField } from './Form/MessageField'
-import { SubmitButton } from './Form/SubmitButton'
-import { CreateFeedbackErrors } from '@/entities/feedback/model/types'
+import { NameField, EmailFiled, MessageField, SubmitButton } from './Form'
+import {
+  CreateFeedback,
+  CreateFeedbackErrors,
+} from '@/entities/feedback/model/types'
 import { getErrorMessage } from '@/shared/lib/errors'
 import { Toast } from '@/shared/ui/Toast'
 
@@ -16,7 +16,7 @@ export const FeedbackCreateForm = () => {
   const [sendFeedback, { isLoading, isSuccess, data, isError, error }] =
     useCreateFeedbackMutation()
 
-  const [dataForm, setDataForm] = useState(initialFeedbackForm)
+  const [dataForm, setDataForm] = useState<CreateFeedback>(initialFeedbackForm)
   const [errorsValidation, setErrorsValidation] =
     useState<CreateFeedbackErrors>({})
 

@@ -1,9 +1,9 @@
-import { Feedback } from '@/entities/feedback/model/types'
+import { Feedback, FindFeedback } from '@/entities/feedback/model/types'
 import { baseApi } from '@/shared/api/baseApi'
 
 const feedbackApi = baseApi.injectEndpoints({
   endpoints: builder => ({
-    findOneFeedback: builder.query<Feedback, Feedback['id']>({
+    findOneFeedback: builder.query<Feedback, FindFeedback>({
       query: id => ({
         url: `/feedback/${id}`,
         method: 'GET',

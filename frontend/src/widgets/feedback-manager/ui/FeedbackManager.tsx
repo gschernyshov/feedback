@@ -6,14 +6,14 @@ import { validationSearch, validationEdit } from '../model/validation'
 import { FeedbackSearch } from './FeedbackSearch'
 import { FeedbackView } from './FeedbackView'
 import { FeedbackEdit } from './FeedbackEdit'
-import { Toast } from '@/shared/ui/Toast'
-import { getErrorMessage } from '@/shared/lib/errors'
 import {
   FindFeedback,
   FindFeedbackError,
   UpdateFeedback,
   UpdateFeedbackErrors,
 } from '@/entities/feedback/model/types'
+import { getErrorMessage } from '@/shared/lib/errors'
+import { Toast } from '@/shared/ui/Toast'
 
 export const FeedbackManager = () => {
   const [
