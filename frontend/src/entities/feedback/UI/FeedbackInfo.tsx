@@ -7,7 +7,7 @@ interface FeedbackInfoProps {
 
 export const FeedbackInfo = ({ feedback }: FeedbackInfoProps) => {
   return (
-    <div className="p-3 border">
+    <div className="w-full p-3 border">
       <p className="border-b text-md font-bold">Feedback c id: {feedback.id}</p>
       <ul className="py-2">
         <li>Имя: {feedback.name}</li>

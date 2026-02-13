@@ -1,24 +1,49 @@
 'use client'
 
-import { useState, ChangeEvent, FormEvent } from 'react'
+import { useState, useEffect, ChangeEvent, FormEvent } from 'react'
 import { useCreateFeedbackMutation } from '../api/useCreateFeedbackMutation'
 import { initialFeedbackForm } from '../model/initData'
 import { validationCreateFeedbackForm } from '../model/validation'
 import { NameField, EmailFiled, MessageField, SubmitButton } from './Form'
+import { useAppDispatch } from '@/app/providers/store'
+import { addTemporary } from '@/features/notifications/model'
 import {
   CreateFeedback,
   CreateFeedbackErrors,
 } from '@/entities/feedback/model/types'
 import { getErrorMessage } from '@/shared/lib/errors'
-import { Toast } from '@/shared/ui/Toast'
 
 export const FeedbackCreateForm = () => {
+  const dispatch = useAppDispatch()
   const [sendFeedback, { isLoading, isSuccess, data, isError, error }] =
     useCreateFeedbackMutation()
 
   const [dataForm, setDataForm] = useState<CreateFeedback>(initialFeedbackForm)
   const [errorsValidation, setErrorsValidation] =
     useState<CreateFeedbackErrors>({})
+
+  useEffect(() => {
+    if (isSuccess) {
+      dispatch(
+        addTemporary({
+          type: 'success',
+          message: `Feedback c id: ${data.id} успешно создан`,
+        }),
+      )
+    }
+  }, [isSuccess, data, dispatch])
+
+  useEffect(() => {
+    if (isError) {
+      dispatch(
+        addTemporary({
+          type: 'error',
+          message: 'При отправке Feedback возникла ошибка',
+          errorMessage: getErrorMessage(error),
+        }),
+      )
+    }
+  }, [isError, error, dispatch])
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>,
@@ -49,7 +74,7 @@ export const FeedbackCreateForm = () => {
 
   return (
     <div className="flex flex-col justify-start gap-4 w-full p-3 border">
-      <h2 className="text-xl font-bold">Отправьте Feedback</h2>
+      <h2 className="text-xl font-bold">Хотите отправить Feedback?</h2>
       <form
         className="flex flex-col justify-start gap-4 w-full"
         onSubmit={handleSubmit}
@@ -77,21 +102,6 @@ export const FeedbackCreateForm = () => {
 
         <SubmitButton isLoading={isLoading} />
       </form>
-
-      {isSuccess && (
-        <Toast
-          isSuccess={true}
-          infoText={`Feedback c id: ${data.id} успешно создан!`}
-        />
-      )}
-
-      {isError && (
-        <Toast
-          isSuccess={false}
-          infoText="При отправке Feedback возникла ошибка"
-          errorMessage={getErrorMessage(error)}
-        />
-      )}
     </div>
   )
 }

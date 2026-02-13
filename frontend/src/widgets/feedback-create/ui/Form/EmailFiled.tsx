@@ -1,5 +1,5 @@
 import { ChangeEvent } from 'react'
-import { Input } from '@/shared/ui/Form/Input'
+import { Input } from '@/shared/UI/Form/Input'
 
 interface EmailFiledProps {
   value: string

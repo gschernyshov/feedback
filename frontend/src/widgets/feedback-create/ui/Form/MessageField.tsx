@@ -1,5 +1,5 @@
 import { ChangeEvent } from 'react'
-import { Textarea } from '@/shared/ui/Form/Textarea'
+import { Textarea } from '@/shared/UI/Form/Textarea'
 
 interface MessageFieldProps {
   value: string
@@ -19,7 +19,7 @@ export const MessageField = ({
       size="base"
       name="message"
       disabled={disabled}
-      placeholder="Имя"
+      placeholder="Сообщение"
       value={value}
       onChange={onChange}
       errorMessage={errorMessage}

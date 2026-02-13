@@ -1,4 +1,4 @@
-import { Button } from '@/shared/ui/Form/Button'
+import { Button } from '@/shared/UI/Form/Button'
 
 interface SubmitButtonProps {
   isLoading: boolean

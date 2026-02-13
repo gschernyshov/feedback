@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { baseApi } from '@/shared/api/baseApi'
+import { notificationSlice } from '@/features/notifications/model'
 
 // Создаём хранилище Redux
 export const store = configureStore({
@@ -7,6 +8,8 @@ export const store = configureStore({
   reducer: {
     // Добавляем редюсер из feedbackApi под его уникальным путём
     [baseApi.reducerPath]: baseApi.reducer,
+
+    notifications: notificationSlice.reducer,
   },
   // Настраиваем middleware — промежуточное ПО для расширения функциональности
   middleware: getDefault =>
@@ -16,3 +19,6 @@ export const store = configureStore({
       // кэширование, повторные запросы, управление состоянием запросов
       .concat(baseApi.middleware),
 })
+
+export type RootState = ReturnType<typeof store.getState>
+export type AppDispatch = typeof store.dispatch

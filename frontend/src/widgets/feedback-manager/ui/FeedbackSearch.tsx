@@ -2,8 +2,8 @@ import {
   FindFeedback,
   FindFeedbackError,
 } from '@/entities/feedback/model/types'
-import { Input } from '@/shared/ui/Form/Input'
-import { Button } from '@/shared/ui/Form/Button'
+import { Input } from '@/shared/UI/Form/Input'
+import { Button } from '@/shared/UI/Form/Button'
 
 interface FeedbackSearchProps {
   value: FindFeedback

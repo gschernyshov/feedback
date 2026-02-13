@@ -1,6 +1,7 @@
 import { FeedbackCreateForm } from '@/widgets/feedback-create'
-import { FeedbackList } from '@/widgets/feedback-list'
 import { FeedbackManager } from '@/widgets/feedback-manager'
+import { FeedbackList } from '@/widgets/feedback-list'
+import { ToastContainer } from '@/features/notifications'
 
 export const HomePage = () => (
   <main className="flex justify-center items-start gap-7 m-5">
@@ -9,5 +10,7 @@ export const HomePage = () => (
       <FeedbackManager />
     </div>
     <FeedbackList />
+
+    <ToastContainer />
   </main>
 )

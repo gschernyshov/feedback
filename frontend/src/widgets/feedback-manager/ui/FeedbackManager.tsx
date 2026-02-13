@@ -6,6 +6,8 @@ import { validationSearch, validationEdit } from '../model/validation'
 import { FeedbackSearch } from './FeedbackSearch'
 import { FeedbackView } from './FeedbackView'
 import { FeedbackEdit } from './FeedbackEdit'
+import { useAppDispatch } from '@/app/providers/store'
+import { addTemporary } from '@/features/notifications/model'
 import {
   FindFeedback,
   FindFeedbackError,
@@ -13,9 +15,9 @@ import {
   UpdateFeedbackErrors,
 } from '@/entities/feedback/model/types'
 import { getErrorMessage } from '@/shared/lib/errors'
-import { Toast } from '@/shared/ui/Toast'
 
 export const FeedbackManager = () => {
+  const dispatch = useAppDispatch()
   const [
     trigger,
     {
@@ -54,7 +56,31 @@ export const FeedbackManager = () => {
         message: feedback.message,
       })
     }
-  }, [feedback, isSuccess])
+  }, [feedback, isSuccess, dispatch])
+
+  useEffect(() => {
+    if (isErrorSearch) {
+      dispatch(
+        addTemporary({
+          type: 'error',
+          message: 'При поиске Feedback возникла ошибка',
+          errorMessage: getErrorMessage(errorSearch),
+        }),
+      )
+    }
+  }, [isErrorSearch, errorSearch, dispatch])
+
+  useEffect(() => {
+    if (isErrorUpdate) {
+      dispatch(
+        addTemporary({
+          type: 'error',
+          message: 'При обновлении Feedback возникла ошибка',
+          errorMessage: getErrorMessage(errorUpdate),
+        }),
+      )
+    }
+  }, [isErrorUpdate, errorUpdate, dispatch])
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>,
@@ -66,7 +92,7 @@ export const FeedbackManager = () => {
     })
   }
 
-  const handleSearch = () => {
+  const handleSearch = async () => {
     setSearchError('')
 
     const newErrorValidation = validationSearch(id)
@@ -75,7 +101,9 @@ export const FeedbackManager = () => {
       return
     }
 
-    trigger(id)
+    const result = await trigger(id)
+
+    if (result.data) setId('')
   }
 
   const handleUpdate = async () => {
@@ -116,22 +144,6 @@ export const FeedbackManager = () => {
         ) : (
           <FeedbackView feedback={feedback} onOpenEdit={openEdit} />
         ))}
-
-      {isErrorSearch && (
-        <Toast
-          isSuccess={false}
-          infoText="При поиске Feedback возникла ошибка"
-          errorMessage={getErrorMessage(errorSearch)}
-        />
-      )}
-
-      {isErrorUpdate && (
-        <Toast
-          isSuccess={false}
-          infoText="При обновлении Feedback возникла ошибка"
-          errorMessage={getErrorMessage(errorUpdate)}
-        />
-      )}
     </div>
   )
 }
