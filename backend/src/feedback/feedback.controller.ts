@@ -7,7 +7,6 @@ import {
   Delete,
   HttpCode,
   Param,
-  Header,
   Logger,
 } from '@nestjs/common'
 import { ApiTags, ApiOperation, ApiParam, ApiResponse } from '@nestjs/swagger'

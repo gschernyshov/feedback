@@ -17,9 +17,23 @@ async function bootstrap() {
           format: winston.format.combine(
             winston.format.timestamp(),
             winston.format.colorize(),
-            winston.format.printf(({ timestamp, level, message }) => {
-              return `[${timestamp}] ${level}: ${message}`
-            }),
+            winston.format.printf(
+              ({
+                timestamp,
+                level,
+                message,
+              }: {
+                timestamp: string
+                level: string
+                message: string | object
+              }) => {
+                const msg =
+                  typeof message === 'object'
+                    ? JSON.stringify(message)
+                    : message
+                return `[${timestamp}] ${level}: ${msg}`
+              },
+            ),
           ),
         }),
         // Логи в файл
@@ -61,11 +75,17 @@ async function bootstrap() {
 
   // Разрешаем CORS-запросы только с фронтенда
   app.enableCors({
-    origin: config.get('CORS_ORIGINS', 'http://localhost:3000'),
+    origin: config.get<string | string[]>(
+      'CORS_ORIGINS',
+      'http://localhost:3000',
+    ),
   })
 
   // Запускаем сервер на порту
-  const port = config.get('PORT', 3001)
+  const port = config.get<number>('PORT', 3001)
   await app.listen(port)
 }
-bootstrap()
+
+bootstrap().catch(error => {
+  console.error('При запуске приложения возникла ошибка: ', error)
+})
