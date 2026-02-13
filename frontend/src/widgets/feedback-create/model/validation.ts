@@ -4,9 +4,9 @@ import {
   validationMessage,
 } from '@/entities/feedback/lib/validation'
 import {
-  CreateFeedback,
-  CreateFeedbackErrors,
-} from '@/entities/feedback/model/types'
+  type CreateFeedback,
+  type CreateFeedbackErrors,
+} from '@/entities/feedback/model'
 
 export const validationCreateFeedbackForm = (data: CreateFeedback) => {
   const { name, email, message } = data

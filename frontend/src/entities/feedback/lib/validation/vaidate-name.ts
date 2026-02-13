@@ -1,5 +1,5 @@
 export const validationName = (name: string) => {
-  const lengthName = name.length
+  const lengthName = name.trim().length
 
   if (lengthName === 0) {
     return 'Имя обязательно'

@@ -1,5 +1,5 @@
 import { formattedDate } from '../lib/format-date'
-import { Feedback } from '../model/types'
+import { type Feedback } from '../model/types'
 
 interface FeedbackInfoProps {
   feedback: Feedback

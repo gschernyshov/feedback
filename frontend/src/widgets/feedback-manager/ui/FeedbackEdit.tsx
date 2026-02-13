@@ -2,9 +2,9 @@ import { ChangeEvent } from 'react'
 import { NameField } from './Fields/NameField'
 import { MessageField } from './Fields/MessageField'
 import {
-  UpdateFeedback,
-  UpdateFeedbackErrors,
-} from '@/entities/feedback/model/types'
+  type UpdateFeedback,
+  type UpdateFeedbackErrors,
+} from '@/entities/feedback/model'
 import { Button } from '@/shared/UI/Form/Button'
 
 interface FeedbackInfoProps {

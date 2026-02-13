@@ -1,4 +1,4 @@
-import { Feedback, FindFeedback } from '@/entities/feedback/model/types'
+import { type Feedback, type FindFeedback } from '@/entities/feedback/model'
 import { baseApi } from '@/shared/api/baseApi'
 
 const feedbackApi = baseApi.injectEndpoints({

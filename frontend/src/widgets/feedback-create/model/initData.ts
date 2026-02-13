@@ -1,4 +1,4 @@
-import { CreateFeedback } from '@/entities/feedback/model/types'
+import { type CreateFeedback } from '@/entities/feedback/model'
 
 export const initialFeedbackForm: CreateFeedback = {
   name: '',

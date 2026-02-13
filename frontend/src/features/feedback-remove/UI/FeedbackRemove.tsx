@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useRemoveFeedbackMutation } from '../api/api'
 import { useAppDispatch } from '@/app/providers/store'
 import { addTemporary } from '@/features/notifications/model'
-import { RemoveFeedback } from '@/entities/feedback/model/types'
+import { type RemoveFeedback } from '@/entities/feedback/model'
 import { getErrorMessage } from '@/shared/lib/errors'
 import { Button } from '@/shared/UI/Form/Button'
 

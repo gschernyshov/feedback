@@ -1,4 +1,8 @@
-import { RemoveFeedback } from '@/entities/feedback/model/types'
+import {
+  markAsDeleted,
+  unmarkAsDeleted,
+  type RemoveFeedback,
+} from '@/entities/feedback/model'
 import { baseApi } from '@/shared/api/baseApi'
 
 const feedbackApi = baseApi.injectEndpoints({
@@ -8,10 +12,16 @@ const feedbackApi = baseApi.injectEndpoints({
         url: `/feedback/${id}`,
         method: 'DELETE',
       }),
-      invalidatesTags: (_, __, id) => [
-        { type: 'Feedback', id },
-        { type: 'Feedback', id: 'LIST' },
-      ],
+      async onQueryStarted(id, { dispatch, queryFulfilled }) {
+        dispatch(markAsDeleted(id))
+        try {
+          await queryFulfilled
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        } catch (_) {
+          dispatch(unmarkAsDeleted(id))
+        }
+      },
+      invalidatesTags: [{ type: 'Feedback', id: 'LIST' }],
     }),
   }),
 })

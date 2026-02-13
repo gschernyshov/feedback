@@ -1,7 +1,7 @@
 import { isEmail } from '@/shared/lib/validation'
 
 export const validationEmail = (email: string) => {
-  const lengthEmail = email.length
+  const lengthEmail = email.trim().length
 
   if (lengthEmail === 0) {
     return 'Email обязателен'

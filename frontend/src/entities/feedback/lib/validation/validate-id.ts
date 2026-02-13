@@ -1,5 +1,5 @@
 export const validationId = (id: string) => {
-  const lengthId = id.length
+  const lengthId = id.trim().length
 
   if (lengthId === 0) {
     return 'Id обязателен'

@@ -4,10 +4,10 @@ import {
   validationName,
 } from '@/entities/feedback/lib/validation'
 import {
-  FindFeedbackError,
-  UpdateFeedback,
-  UpdateFeedbackErrors,
-} from '@/entities/feedback/model/types'
+  type FindFeedbackError,
+  type UpdateFeedback,
+  type UpdateFeedbackErrors,
+} from '@/entities/feedback/model'
 
 export const validationSearch = (id: FindFeedbackError) => {
   return validationId(id)

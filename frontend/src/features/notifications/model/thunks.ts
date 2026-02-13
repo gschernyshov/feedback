@@ -1,6 +1,6 @@
 import { nanoid } from '@reduxjs/toolkit'
-import { addNotify, removeNotify, Notification } from './notificationSlice'
-import { AppDispatch } from '@/app/providers/store'
+import { addNotify, removeNotify, type Notification } from '.'
+import { type AppDispatch } from '@/app/providers/store'
 
 export const addTemporary =
   ({ type, message, errorMessage }: Omit<Notification, 'id'>) =>

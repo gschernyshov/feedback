@@ -8,9 +8,9 @@ import { NameField, EmailFiled, MessageField, SubmitButton } from './Form'
 import { useAppDispatch } from '@/app/providers/store'
 import { addTemporary } from '@/features/notifications/model'
 import {
-  CreateFeedback,
-  CreateFeedbackErrors,
-} from '@/entities/feedback/model/types'
+  type CreateFeedback,
+  type CreateFeedbackErrors,
+} from '@/entities/feedback/model'
 import { getErrorMessage } from '@/shared/lib/errors'
 
 export const FeedbackCreateForm = () => {
@@ -51,7 +51,7 @@ export const FeedbackCreateForm = () => {
     const { name: fieldName, value } = e.target
     setDataForm({
       ...dataForm,
-      [fieldName]: value.trim(),
+      [fieldName]: value,
     })
   }
 

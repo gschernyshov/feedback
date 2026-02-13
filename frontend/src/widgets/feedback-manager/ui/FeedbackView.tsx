@@ -1,5 +1,5 @@
 import { FeedbackRemove } from '@/features/feedback-remove'
-import { Feedback } from '@/entities/feedback/model/types'
+import { type Feedback } from '@/entities/feedback/model'
 import { FeedbackInfo } from '@/entities/feedback/UI/FeedbackInfo'
 import { Button } from '@/shared/UI/Form/Button'
 

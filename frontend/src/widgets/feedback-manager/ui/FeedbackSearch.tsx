@@ -1,7 +1,7 @@
 import {
-  FindFeedback,
-  FindFeedbackError,
-} from '@/entities/feedback/model/types'
+  type FindFeedback,
+  type FindFeedbackError,
+} from '@/entities/feedback/model'
 import { Input } from '@/shared/UI/Form/Input'
 import { Button } from '@/shared/UI/Form/Button'
 
@@ -31,7 +31,7 @@ export const FeedbackSearch = ({
           disabled={isLoading}
           placeholder="Id"
           value={value}
-          onChange={e => onChange(e.target.value.trim())}
+          onChange={e => onChange(e.target.value)}
           errorMessage={errorMessage}
         />
         <Button size="sm" type="button" disabled={isLoading} onClick={onSearch}>

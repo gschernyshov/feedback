@@ -6,18 +6,20 @@ import { validationSearch, validationEdit } from '../model/validation'
 import { FeedbackSearch } from './FeedbackSearch'
 import { FeedbackView } from './FeedbackView'
 import { FeedbackEdit } from './FeedbackEdit'
-import { useAppDispatch } from '@/app/providers/store'
+import { useAppDispatch, useAppSelector } from '@/app/providers/store'
 import { addTemporary } from '@/features/notifications/model'
 import {
-  FindFeedback,
-  FindFeedbackError,
-  UpdateFeedback,
-  UpdateFeedbackErrors,
-} from '@/entities/feedback/model/types'
+  selectDeletedIds,
+  type FindFeedback,
+  type FindFeedbackError,
+  type UpdateFeedback,
+  type UpdateFeedbackErrors,
+} from '@/entities/feedback/model'
 import { getErrorMessage } from '@/shared/lib/errors'
 
 export const FeedbackManager = () => {
   const dispatch = useAppDispatch()
+  const deletedIds = useAppSelector(selectDeletedIds)
   const [
     trigger,
     {
@@ -88,7 +90,7 @@ export const FeedbackManager = () => {
     const { name: fieldName, value } = e.target
     setChanges({
       ...changes,
-      [fieldName]: value.trim(),
+      [fieldName]: value,
     })
   }
 
@@ -101,9 +103,9 @@ export const FeedbackManager = () => {
       return
     }
 
-    const result = await trigger(id)
+    await trigger(id)
 
-    if (result.data) setId('')
+    setId('')
   }
 
   const handleUpdate = async () => {
@@ -132,6 +134,7 @@ export const FeedbackManager = () => {
 
       {!isSearching &&
         isSuccess &&
+        !deletedIds.includes(feedback.id) &&
         (isEdit ? (
           <FeedbackEdit
             changes={changes}

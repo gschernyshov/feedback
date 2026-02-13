@@ -3,7 +3,7 @@
 import { selectNotifications, removeNotify } from '../model'
 import { Toast } from './Toast'
 import { useAppDispatch, useAppSelector } from '@/app/providers/store/hooks'
-import { Feedback } from '@/entities/feedback/model/types'
+import { type Feedback } from '@/entities/feedback/model'
 
 export const ToastContainer = () => {
   const dispatch = useAppDispatch()

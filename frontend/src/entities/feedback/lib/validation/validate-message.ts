@@ -1,5 +1,5 @@
 export const validationMessage = (message: string) => {
-  const messageLength = message.length
+  const messageLength = message.trim().length
 
   if (messageLength === 0) {
     return 'Сообщение обязательно'
