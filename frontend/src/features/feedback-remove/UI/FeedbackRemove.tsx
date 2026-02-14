@@ -7,11 +7,13 @@ interface FeedbackRemoveProps {
 }
 
 export const FeedbackRemove = ({ id }: FeedbackRemoveProps) => {
-  const [removeFeedback, { isLoading }] = useRemoveFeedbackMutation()
+  const [removeFeedback, { isLoading, isSuccess }] = useRemoveFeedbackMutation()
 
   const handleRemove = () => {
     removeFeedback(id)
   }
+
+  if (isSuccess) return null
 
   return (
     <Button size="sm" type="button" disabled={isLoading} onClick={handleRemove}>
