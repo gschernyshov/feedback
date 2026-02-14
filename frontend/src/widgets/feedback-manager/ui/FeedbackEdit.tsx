@@ -1,11 +1,10 @@
 import { ChangeEvent } from 'react'
-import { NameField } from './Fields/NameField'
-import { MessageField } from './Fields/MessageField'
+import { NameField, MessageField } from './Fields'
 import {
   type UpdateFeedback,
   type UpdateFeedbackErrors,
 } from '@/entities/feedback/model'
-import { Button } from '@/shared/UI/Form/Button'
+import { Button } from '@/shared/UI/Form'
 
 interface FeedbackInfoProps {
   changes: UpdateFeedback

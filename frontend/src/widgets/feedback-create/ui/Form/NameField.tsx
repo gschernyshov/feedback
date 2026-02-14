@@ -1,5 +1,5 @@
 import { ChangeEvent } from 'react'
-import { Input } from '@/shared/UI/Form/Input'
+import { Input } from '@/shared/UI/Form'
 
 interface NameFieldProps {
   value: string

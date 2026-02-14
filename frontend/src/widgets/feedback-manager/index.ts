@@ -1,1 +1,1 @@
-export { FeedbackManager } from './ui/FeedbackManager'
+export { FeedbackManager } from './UI/FeedbackManager'

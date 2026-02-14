@@ -1,5 +1,5 @@
 import { ChangeEvent } from 'react'
-import { Textarea } from '@/shared/UI/Form/Textarea'
+import { Textarea } from '@/shared/UI/Form'
 
 interface MessageFieldProps {
   value: string
