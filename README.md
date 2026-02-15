@@ -13,7 +13,7 @@ Fullstack приложение для управления отзывами (CRU
 root
  ├── frontend
  ├── backend
- └── docker-compose.yml
+ └── docker-compose.dev.yml
 ```
 
 ---
@@ -189,7 +189,7 @@ http://localhost:3001/api
 
 # 🐳 Docker
 
-## docker-compose
+## docker-compose.dev
 
 Поднимаются 3 сервиса:
 
@@ -200,7 +200,7 @@ http://localhost:3001/api
 ### Запуск всего проекта:
 
 ```bash
-docker compose up --build
+docker-compose -f docker-compose.dev.yml up --build
 ```
 
 После запуска:
