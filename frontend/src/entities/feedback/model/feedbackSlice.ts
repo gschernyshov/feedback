@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { type Feedback } from '.'
+import { type Feedback } from './types'
 
 interface FeedbackState {
   deletedIds: Feedback['id'][]

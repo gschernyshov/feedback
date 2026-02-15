@@ -1,5 +1,5 @@
 import { nanoid } from '@reduxjs/toolkit'
-import { addNotify, removeNotify, type Notification } from '.'
+import { addNotify, removeNotify, type Notification } from './notificationSlice'
 import { type AppDispatch } from '@/app/providers/store'
 
 export const addTemporary =

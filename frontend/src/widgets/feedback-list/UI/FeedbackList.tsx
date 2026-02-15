@@ -2,7 +2,7 @@
 
 import { useFindAllFeedbacksQuery } from '../api/useFindAllFeedbacksQuery'
 import { FeedbackRemove } from '@/features/feedback-remove'
-import { FeedbackInfo } from '@/entities/feedback/UI/FeedbackInfo'
+import { FeedbackInfo } from '@/entities/feedback'
 import { getErrorMessage } from '@/shared/lib/errors'
 
 export const FeedbackList = () => {
